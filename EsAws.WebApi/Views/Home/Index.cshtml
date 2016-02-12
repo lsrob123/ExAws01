@@ -12,6 +12,11 @@
 <body>
     <div>
         Home Page of ExAws.WebApi @DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")
+        <p></p>
+        <form action="http://localhost:62607/api/upload/a123" method="POST" enctype="multipart/form-data">
+            <input type="file" name="fileToUpload" id="fileToUpload">
+            <input type="submit" value="Upload File" name="submit">
+        </form>
     </div>
 </body>
 </html>

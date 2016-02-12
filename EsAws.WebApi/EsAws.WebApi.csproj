@@ -152,6 +152,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Handlers\IgnoreMvcConstraint.cs" />
+    <Compile Include="Handlers\StreamUploadHandler.cs" />
+    <Compile Include="Handlers\StreamUploadMessageHandler.cs" />
+    <Compile Include="Models\StreamParamAttribute.cs" />
+    <Compile Include="Models\UploadFormProvider.cs" />
     <Compile Include="Models\UploadRequest.cs" />
     <Compile Include="Models\UploadResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -179,7 +184,9 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
