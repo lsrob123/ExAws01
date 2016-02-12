@@ -16,11 +16,12 @@ namespace EsAws.WebApi.Handlers
         protected override Task<HttpResponseMessage> SendAsync(
                 HttpRequestMessage request, CancellationToken cancellationToken)
         {
-            var filePath = Path.Combine(DocumentDirectory, "UploadedFile.txt");
-            SaveRequestBodyAsFile(HttpContext.Current.Request, filePath);
+            var requestFromContext = HttpContext.Current.Request;
+            var method = requestFromContext.HttpMethod;
 
-            
-            //var response = await base.SendAsync(request, cancellationToken);
+            var filePath = Path.Combine(DocumentDirectory, "UploadedFile.txt");
+            SaveRequestBodyAsFile(requestFromContext, filePath);
+
             var response = new HttpResponseMessage(HttpStatusCode.OK)
             {
                 Content = new StringContent("Uploaded!")
