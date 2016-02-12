@@ -8,7 +8,8 @@ namespace EsAws.Uploader
     public partial class Form1 : Form
     {
         private const int BufferSize = 1024;
-        private const string Url = "http://localhost:62607/api/StreamUploadx";
+        //private const string Url = "http://localhost:62607/api/StreamUploadx";
+        private const string Url = "http://localhost/StreamUpload/api/StreamUploadx/";
 
         public Form1()
         {
@@ -39,8 +40,9 @@ namespace EsAws.Uploader
         {
             var filePath = lblFileName.Text;
             txtResponse.Text = string.Empty;
-            
-            var request = (HttpWebRequest)WebRequest.Create(Url);
+            Update();
+
+            var request = (HttpWebRequest) WebRequest.Create(Url + Guid.NewGuid());
             request.Accept = "text/xml";
             request.Method = "PUT";
 
@@ -61,12 +63,19 @@ namespace EsAws.Uploader
                 }
 
 
-                using (var response = request.GetResponse())
+                try
                 {
-                    using (var reader = new StreamReader(response.GetResponseStream()))
+                    using (var response = request.GetResponse())
                     {
-                        result = reader.ReadToEnd();
+                        using (var reader = new StreamReader(response.GetResponseStream()))
+                        {
+                            result = reader.ReadToEnd();
+                        }
                     }
+                }
+                catch (WebException webException)
+                {
+                    result = webException.ToString();
                 }
             }
             catch (Exception exception)

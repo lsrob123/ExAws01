@@ -17,7 +17,7 @@ namespace EsAws.WebApi
 
             config.Routes.MapHttpRoute(
                 name: "StreamUploadx",
-                routeTemplate: "api/StreamUploadX",
+                routeTemplate: "api/StreamUploadX/{providerKey}",
                 defaults: null,
                 constraints: null,
                 handler: new StreamUploadMessageHandler() // per-route message handler
